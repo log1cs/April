@@ -1,25 +1,190 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:largeHeap="true"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:padding="6dp">
 
+        <!-- Your existing layout content here -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Welcome Text -->
+        <TextView
+            android:id="@+id/text_welcome_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="6dp" />
+
+        <!-- Button 1 -->
+        <ImageButton
+            android:id="@+id/button1"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/livingroom"
+            app:layout_constraintTop_toBottomOf="@id/text_welcome_bottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button2"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="toggleConnection" />
+
+        <!-- Button 1 Text -->
+        <TextView
+            android:id="@+id/text_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Living Room"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button1"
+            app:layout_constraintStart_toStartOf="@id/button1"
+            app:layout_constraintEnd_toEndOf="@id/button1"
+            android:layout_marginTop="8dp" />
+
+        <!-- Button 2 -->
+        <ImageButton
+            android:id="@+id/button2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/kitchen"
+            app:layout_constraintTop_toBottomOf="@id/text_welcome_bottom"
+            app:layout_constraintStart_toEndOf="@id/button1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <!-- Button 2 Text -->
+        <TextView
+            android:id="@+id/text_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kitchen"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button2"
+            app:layout_constraintStart_toStartOf="@id/button2"
+            app:layout_constraintEnd_toEndOf="@id/button2"
+            android:layout_marginTop="8dp" />
+
+        <!-- Button 3 -->
+        <ImageButton
+            android:id="@+id/button3"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/bedroom"
+            app:layout_constraintTop_toBottomOf="@id/text_button1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button4"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="toggleConnection" />
+
+        <!-- Button 3 Text -->
+        <TextView
+            android:id="@+id/text_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedroom 1"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button3"
+            app:layout_constraintStart_toStartOf="@id/button3"
+            app:layout_constraintEnd_toEndOf="@id/button3"
+            android:layout_marginTop="8dp" />
+
+        <!-- Button 4 -->
+        <ImageButton
+            android:id="@+id/button4"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/bedroom"
+            app:layout_constraintTop_toBottomOf="@id/text_button1"
+            app:layout_constraintStart_toEndOf="@id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="toggleConnection" />
+
+        <!-- Button 4 Text -->
+        <TextView
+            android:id="@+id/text_button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedroom 2"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button4"
+            app:layout_constraintStart_toStartOf="@id/button4"
+            app:layout_constraintEnd_toEndOf="@id/button4"
+            android:layout_marginTop="8dp" />
+
+        <!-- Button 5 -->
+        <ImageButton
+            android:id="@+id/button5"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/bedroom"
+            app:layout_constraintTop_toBottomOf="@id/text_button3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button6"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="toggleConnection" />
+
+        <!-- Button 5 Text -->
+        <TextView
+            android:id="@+id/text_button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedroom 3"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button5"
+            app:layout_constraintStart_toStartOf="@id/button5"
+            app:layout_constraintEnd_toEndOf="@id/button5"
+            android:layout_marginTop="8dp" />
+
+        <!-- Button 6 -->
+        <ImageButton
+            android:id="@+id/button6"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/garden"
+            app:layout_constraintTop_toBottomOf="@id/text_button3"
+            app:layout_constraintStart_toEndOf="@id/button5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:onClick="toggleConnection" />
+
+        <!-- Button 6 Text -->
+        <TextView
+            android:id="@+id/text_button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Garden"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/button6"
+            app:layout_constraintStart_toStartOf="@id/button6"
+            app:layout_constraintEnd_toEndOf="@id/button6"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

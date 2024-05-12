@@ -13,10 +13,66 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="Notifications"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Electric Usage Report -->
+    <TextView
+        android:id="@+id/text_electric_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Here is the electric usage report of this month, click to check"
+        app:layout_constraintTop_toBottomOf="@id/text_notifications"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Ex Waiting at the Door -->
+    <TextView
+        android:id="@+id/text_ex_waiting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Ex is waiting for opening the door, check if you accept to open the door for her"
+        app:layout_constraintTop_toBottomOf="@id/text_electric_report"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Alexa Permission -->
+    <TextView
+        android:id="@+id/text_alexa_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tuan Anh had granted Alexa permission to access the house"
+        app:layout_constraintTop_toBottomOf="@id/text_ex_waiting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Samsung TV Addition -->
+    <TextView
+        android:id="@+id/text_samsung_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Khanh Trinh had added Samsung TV for Living room"
+        app:layout_constraintTop_toBottomOf="@id/text_alexa_permission"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <!-- Xiaomi Lamp Request -->
+    <TextView
+        android:id="@+id/text_xiaomi_lamp_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thang had requested to add Xiaomi Lamp for Bedroom 1, (accept or not)"
+        app:layout_constraintTop_toBottomOf="@id/text_samsung_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
