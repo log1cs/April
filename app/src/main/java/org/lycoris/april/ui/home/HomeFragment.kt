@@ -12,7 +12,7 @@ import org.lycoris.april.bluetooth.BluetoothManager
 class HomeFragment : Fragment() {
 
     private lateinit var bluetoothManager: BluetoothManager
-    private val deviceAddress = "XX:XX:XX:XX:XX:XX" // Replace with your device's MAC address
+    private val deviceAddress = "00:21:13:05:FF:C2"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +34,6 @@ class HomeFragment : Fragment() {
         val button2: Button = view.findViewById(R.id.button8)
         val button3: Button = view.findViewById(R.id.button9)
         val button4: Button = view.findViewById(R.id.button10)
-        /*val button5: Button = view.findViewById(R.id.button5)
-        val button6: Button = view.findViewById(R.id.button6)*/
 
         button1.setOnClickListener {
             bluetoothManager.sendMessage("1")
@@ -49,12 +47,6 @@ class HomeFragment : Fragment() {
         button4.setOnClickListener {
             bluetoothManager.sendMessage("4")
         }
-        /*button5.setOnClickListener {
-            bluetoothManager.sendMessage("5")
-        }
-        button6.setOnClickListener {
-            bluetoothManager.sendMessage("6")
-        }*/
     }
 
     override fun onDestroy() {

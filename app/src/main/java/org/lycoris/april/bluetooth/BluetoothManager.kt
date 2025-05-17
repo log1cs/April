@@ -39,8 +39,7 @@ class BluetoothManager(private val context: Context) {
                 Manifest.permission.BLUETOOTH_CONNECT
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Log.e(TAG, "Missing BLUETOOTH_CONNECT permission")
-            // You should request the permission here, or handle the absence of permission
+            Log.e(TAG, "Missing Bluetooth permission. Perhaps you forgot to allow it?")
             return
         }
 
@@ -113,9 +112,5 @@ class BluetoothManager(private val context: Context) {
         } catch (e: IOException) {
             Log.e(TAG, "Error disconnecting", e)
         }
-    }
-
-    fun isConnected(): Boolean {
-        return connected
     }
 }
