@@ -28,6 +28,7 @@ class BluetoothManager(private val context: Context) {
         bluetoothAdapter = bluetoothManager.adapter
     }
 
+    @Throws(IOException::class)
     fun connectToDevice(deviceAddress: String) {
         if (connected) {
             Log.w(TAG, "Already connected")
@@ -40,17 +41,17 @@ class BluetoothManager(private val context: Context) {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Log.e(TAG, "Missing Bluetooth permission. Perhaps you forgot to allow it?")
-            return
+            throw IOException("Missing Bluetooth permission")
         }
 
-        try {
-            if (bluetoothAdapter == null) {
-                Log.e(TAG, "Bluetooth not supported")
-                return
-            }
-            val bluetoothDevice: BluetoothDevice? = bluetoothAdapter?.getRemoteDevice(deviceAddress)
-            bluetoothSocket = bluetoothDevice?.createRfcommSocketToServiceRecord(uuid)
+        if (bluetoothAdapter == null) {
+            Log.e(TAG, "Bluetooth not supported")
+            throw IOException("Bluetooth not supported")
+        }
+        val bluetoothDevice: BluetoothDevice? = bluetoothAdapter?.getRemoteDevice(deviceAddress)
+        bluetoothSocket = bluetoothDevice?.createRfcommSocketToServiceRecord(uuid)
 
+        try {
             bluetoothSocket?.connect()
             outputStream = bluetoothSocket?.outputStream
             connected = true
@@ -58,6 +59,7 @@ class BluetoothManager(private val context: Context) {
         } catch (e: IOException) {
             Log.e(TAG, "Error connecting to device", e)
             connected = false
+            throw IOException("Error connecting to device: ${e.localizedMessage}", e)
         }
     }
 

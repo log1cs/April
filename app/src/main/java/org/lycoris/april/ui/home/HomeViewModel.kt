@@ -10,7 +10,7 @@ var isButtonPressed = false
 class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Living Room 1"
+        value = "jargon"
     }
     val text: LiveData<String> = _text
 
