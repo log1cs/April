@@ -13,20 +13,36 @@ import java.io.IOException
 import java.io.OutputStream
 import java.util.UUID
 
-class BluetoothManager(private val context: Context) {
+class BluetoothConnectionManager private constructor(private val context: Context) {
 
     private var bluetoothAdapter: BluetoothAdapter? = null
     private var bluetoothSocket: BluetoothSocket? = null
     private var outputStream: OutputStream? = null
     private val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // Standard SerialPortService ID
-    private val TAG: String = "BluetoothManager"
+    private val TAG: String = "BluetoothConnectionManager"
     private var connected = false
+    private var connectedDeviceName: String? = null
+
+    companion object {
+        @Volatile
+        private var INSTANCE: BluetoothConnectionManager? = null
+
+        fun getInstance(context: Context): BluetoothConnectionManager {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: BluetoothConnectionManager(context.applicationContext).also { INSTANCE = it }
+            }
+        }
+    }
 
     init {
         val bluetoothManager: BluetoothManager =
             context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bluetoothAdapter = bluetoothManager.adapter
     }
+
+    fun isConnected(): Boolean = connected
+
+    fun getConnectedDeviceName(): String? = connectedDeviceName
 
     @Throws(IOException::class)
     fun connectToDevice(deviceAddress: String) {
@@ -55,10 +71,12 @@ class BluetoothManager(private val context: Context) {
             bluetoothSocket?.connect()
             outputStream = bluetoothSocket?.outputStream
             connected = true
+            connectedDeviceName = bluetoothDevice?.name ?: deviceAddress
             Log.d(TAG, "Connected to device")
         } catch (e: IOException) {
             Log.e(TAG, "Error connecting to device", e)
             connected = false
+            connectedDeviceName = null
             throw IOException("Error connecting to device: ${e.localizedMessage}", e)
         }
     }
@@ -75,7 +93,6 @@ class BluetoothManager(private val context: Context) {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Log.e(TAG, "Missing BLUETOOTH_CONNECT permission")
-            // You should request the permission here, or handle the absence of permission
             return
         }
         try {
@@ -103,13 +120,13 @@ class BluetoothManager(private val context: Context) {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Log.e(TAG, "Missing BLUETOOTH_CONNECT permission")
-            // You should request the permission here, or handle the absence of permission
             return
         }
 
         try {
             bluetoothSocket?.close()
             connected = false
+            connectedDeviceName = null
             Log.d(TAG, "Disconnected")
         } catch (e: IOException) {
             Log.e(TAG, "Error disconnecting", e)

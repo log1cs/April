@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.lycoris.april.R
-import org.lycoris.april.bluetooth.BluetoothManager
+import org.lycoris.april.bluetooth.BluetoothConnectionManager
 import org.lycoris.april.bluetooth.BluetoothDeviceAdapter
 
 class BluetoothFragment : Fragment() {
@@ -31,7 +31,7 @@ class BluetoothFragment : Fragment() {
     private val REQUEST_BLUETOOTH_PERMISSIONS = 1001
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
-    private lateinit var btManager: BluetoothManager
+    private lateinit var btManager: BluetoothConnectionManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BluetoothDeviceAdapter
     private val deviceList = mutableListOf<BluetoothDevice>()
@@ -63,7 +63,7 @@ class BluetoothFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_bluetooth, container, false)
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        btManager = BluetoothManager(requireContext())
+        btManager = BluetoothConnectionManager.getInstance(requireContext())
         setupRecyclerView(view)
         return view
     }

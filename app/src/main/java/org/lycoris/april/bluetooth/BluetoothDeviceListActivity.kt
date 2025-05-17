@@ -29,7 +29,7 @@ class BluetoothDeviceListActivity : AppCompatActivity() {
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private lateinit var txtConnectedDevice: TextView
-    private lateinit var btManager: BluetoothManager
+    private lateinit var btManager: BluetoothConnectionManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BluetoothDeviceAdapter
     private val deviceList = mutableListOf<BluetoothDevice>()
@@ -56,7 +56,7 @@ class BluetoothDeviceListActivity : AppCompatActivity() {
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         txtConnectedDevice = findViewById(R.id.txtConnectedDevice)
-        btManager = BluetoothManager(this)
+        btManager = BluetoothConnectionManager.getInstance(this)
 
         setupRecyclerView()
     }
@@ -92,8 +92,17 @@ class BluetoothDeviceListActivity : AppCompatActivity() {
 
     private fun connectToDevice(device: BluetoothDevice) {
         Log.d(TAG, "Connecting to device: ${device.name ?: device.address}")
-        txtConnectedDevice.text = "Connected to: ${device.name ?: device.address}"
-        btManager.connectToDevice(device.address)
+        try {
+            btManager.connectToDevice(device.address)
+            txtConnectedDevice.text = "Connected to: ${device.name ?: device.address}"
+            Toast.makeText(this, "Connected to: ${device.name ?: device.address}", Toast.LENGTH_SHORT).show()
+            // Set result and finish activity
+            setResult(RESULT_OK)
+            finish()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to connect", e)
+            Toast.makeText(this, "Failed to connect: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun checkPermissions(): Boolean {
