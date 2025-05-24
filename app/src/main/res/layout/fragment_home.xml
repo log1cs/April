@@ -6,6 +6,183 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <!-- ImageView at the top -->
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="84dp"
+        android:gravity="center"
+        android:text="↻"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/button6"
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="202dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cybertruck_preview"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <!-- "Đi Thẳng" button below the image, centered horizontally -->
+
+    <!-- "Thẳng Chéo trái " button below and to the left of "Đi Thẳng" -->
+
+    <!-- "Thẳng Chéo Phải" button below "Đi Thẳng" and to the right of "Thẳng Chéo trái" -->
+
+    <!-- "Rẽ Trái" button below "Thẳng Chéo trái" -->
+
+    <!-- "Rẽ Phải" button below "Thẳng Chéo Phải" -->
+
+    <!-- "LÙI Chéo Phải" button below "Rẽ Trái" -->
+    <!-- Note: Based on your description, this might be "Lùi Chéo Trái" or you might want to adjust positions -->
+
+    <!-- "Lùi Chéo Trái" button below "Rẽ Phải" -->
+    <!-- Note: Based on your description, this might be "Lùi Chéo Phải" or you might want to adjust positions -->
+
+    <!-- "Đi Lùi" button below the two Lùi Chéo buttons, centered -->
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↑"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↖"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↗"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="←"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@id/button2" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="→"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@id/button3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@id/button3" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↙"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@id/button9"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@id/button9"
+        app:layout_constraintTop_toBottomOf="@id/button9" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↘"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@id/button8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/button8"
+        app:layout_constraintTop_toBottomOf="@id/button8" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="70dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="↓"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+    <TextView
+        android:id="@+id/text_no_device_connected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="No device connected"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- The GridLayout is currently empty and not constrained vertically beyond its top.
+         If you plan to use it, you'll need to add constraints and content.
+         For now, it's not affecting the other views. -->
     <GridLayout
         android:id="@+id/button_grid"
         android:layout_width="0dp"
@@ -17,53 +194,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="40dp"/>
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="Đi Thẳng" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="Rẽ Phải" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="Rẽ Trái" />
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="Đi Lùi" />
-    </GridLayout>
-
-    <TextView
-        android:id="@+id/text_no_device_connected"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No device connected"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="68dp"
+        android:text="Dừng Khẩn Cấp"
+        app:layout_constraintBottom_toTopOf="@+id/text_no_device_connected"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="64dp"/>
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button10"
+        app:layout_constraintVertical_bias="0.995" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="96dp"
+        android:layout_height="101dp"
+        android:src="@drawable/cybertruck_overhead"
+        app:layout_constraintBottom_toTopOf="@+id/button10"
+        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintVertical_bias="0.521"
+        app:srcCompat="@drawable/cybertruck_overhead" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="86dp"
+        android:gravity="center"
+        android:text="↺"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
+        app:layout_constraintStart_toStartOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
