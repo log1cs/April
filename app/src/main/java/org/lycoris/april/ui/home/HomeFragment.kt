@@ -23,14 +23,22 @@ class HomeFragment : Fragment() {
     private lateinit var bluetoothManager: BluetoothConnectionManager
     private val REQUEST_BLUETOOTH_PERMISSIONS = 1001
     private lateinit var textNoDeviceConnected: TextView
+    private lateinit var button2: Button
+    private lateinit var button3: Button
+    private lateinit var button4: Button
+    private lateinit var button5: Button
+    private lateinit var button6: Button
     private lateinit var button7: Button
     private lateinit var button8: Button
     private lateinit var button9: Button
     private lateinit var button10: Button
+    private lateinit var button11: Button
+    private lateinit var button12: Button
 
     private val bluetoothDeviceListLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+    )
+    { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             // Device was connected successfully
             updateUIState()
@@ -47,24 +55,52 @@ class HomeFragment : Fragment() {
 
         // Initialize views
         textNoDeviceConnected = view.findViewById(R.id.text_no_device_connected)
+        button2 = view.findViewById(R.id.button2) // Đi Thẳng Chéo Trái
+        button3 = view.findViewById(R.id.button3) // Đi Thẳng Chéo Phải
+        button4 = view.findViewById(R.id.button4) // Đi Lùi Chéo Trái
+        button5 = view.findViewById(R.id.button5) // Đi Lùi Chéo Phải
+        button6 = view.findViewById(R.id.button6) // Quay Vòng Trái
         button7 = view.findViewById(R.id.button7) // Đi Thẳng
         button8 = view.findViewById(R.id.button8) // Rẽ Phải
         button9 = view.findViewById(R.id.button9) // Rẽ Trái
         button10 = view.findViewById(R.id.button10) // Đi Lùi
+        button11 = view.findViewById(R.id.button11) // Dừng Khẩn Cấp
+        button12 = view.findViewById(R.id.button12) // Quay Vòng Phải
 
         updateUIState()
 
         button7.setOnClickListener {
-            bluetoothManager.sendMessage("1")
+            bluetoothManager.sendMessage("FS")
         }
         button8.setOnClickListener {
-            bluetoothManager.sendMessage("2")
+            bluetoothManager.sendMessage("RS")
         }
         button9.setOnClickListener {
-            bluetoothManager.sendMessage("3")
+            bluetoothManager.sendMessage("LS")
         }
         button10.setOnClickListener {
-            bluetoothManager.sendMessage("4")
+            bluetoothManager.sendMessage("BS")
+        }
+        button2.setOnClickListener {
+            bluetoothManager.sendMessage("FL")
+        }
+        button3.setOnClickListener {
+            bluetoothManager.sendMessage("FR")
+        }
+        button4.setOnClickListener {
+            bluetoothManager.sendMessage("BL")
+        }
+        button5.setOnClickListener {
+            bluetoothManager.sendMessage("BR")
+        }
+        button11.setOnClickListener {
+            bluetoothManager.sendMessage("EM")
+        }
+        button6.setOnClickListener {
+            bluetoothManager.sendMessage("RL")
+        }
+        button12.setOnClickListener {
+            bluetoothManager.sendMessage("RR")
         }
 
         return view
@@ -72,7 +108,8 @@ class HomeFragment : Fragment() {
 
     private fun updateUIState() {
         val isConnected = bluetoothManager.isConnected()
-        val normalColor = resources.getColor(R.color.scarlet, null)
+        val normalColor = resources.getColor(R.color.dark_blue, null)
+        val emercyColor = resources.getColor(R.color.dark_red, null)
         val grayColor = resources.getColor(android.R.color.darker_gray, null)
 
         // Update connection status text
@@ -83,11 +120,13 @@ class HomeFragment : Fragment() {
         }
 
         // Update button states
-        val buttons = listOf(button7, button8, button9, button10)
+        val buttons = listOf(button7, button8, button9, button10, button2, button3, button4, button5, button6, button12)
         for (btn in buttons) {
             btn.isEnabled = isConnected
             btn.setBackgroundColor(if (isConnected) normalColor else grayColor)
         }
+        button11.isEnabled = isConnected
+        button11.setBackgroundColor(if(isConnected) emercyColor else grayColor)
     }
 
     override fun onResume() {
