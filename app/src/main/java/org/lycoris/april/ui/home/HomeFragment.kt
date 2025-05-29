@@ -6,12 +6,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent // Ensure this is present for MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+//import androidx.compose.ui.input.pointer.isPressed
+//import androidx.compose.ui.input.pointer.isPressed
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.lycoris.april.R
@@ -44,7 +47,37 @@ class HomeFragment : Fragment() {
             updateUIState()
         }
     }
-    
+
+    private fun createBluetoothTouchListener(messageOnPress: String, messageOnRelease: String? = null): View.OnTouchListener {
+        return View.OnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    bluetoothManager.sendMessage(messageOnPress)
+                    v.isPressed = true
+                    true
+                }
+                MotionEvent.ACTION_UP -> { // Handle ACTION_UP separately for performClick
+                    // Only perform click if the touch up is within the view bounds
+                    // (optional, but good practice for click behavior)
+                    if (v.isPressed) { // Check if it was actually pressed (avoid issues if canceled mid-gesture)
+                        messageOnRelease?.let { bluetoothManager.sendMessage(it) }
+                        v.isPressed = false
+                        v.performClick() // Call performClick for accessibility
+                    }
+                    true
+                }
+                MotionEvent.ACTION_CANCEL -> {
+                    // If touch is canceled, we might not want to call performClick,
+                    // but we should reset the pressed state and send release message.
+                    messageOnRelease?.let { bluetoothManager.sendMessage(it) }
+                    v.isPressed = false
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,39 +102,61 @@ class HomeFragment : Fragment() {
 
         updateUIState()
 
-        button7.setOnClickListener {
-            bluetoothManager.sendMessage("FS")
-        }
-        button8.setOnClickListener {
-            bluetoothManager.sendMessage("RS")
-        }
-        button9.setOnClickListener {
-            bluetoothManager.sendMessage("LS")
-        }
-        button10.setOnClickListener {
-            bluetoothManager.sendMessage("BS")
-        }
-        button2.setOnClickListener {
-            bluetoothManager.sendMessage("FL")
-        }
-        button3.setOnClickListener {
-            bluetoothManager.sendMessage("FR")
-        }
-        button4.setOnClickListener {
-            bluetoothManager.sendMessage("BL")
-        }
-        button5.setOnClickListener {
-            bluetoothManager.sendMessage("BR")
-        }
+//        button7.setOnClickListener {
+//            bluetoothManager.sendMessage("FS")
+//        }
+//        button8.setOnClickListener {
+//            bluetoothManager.sendMessage("RS")
+//        }
+//        button9.setOnClickListener {
+//            bluetoothManager.sendMessage("LS")
+//        }
+//        button10.setOnClickListener {
+//            bluetoothManager.sendMessage("BS")
+//        }
+//        button2.setOnClickListener {
+//            bluetoothManager.sendMessage("FL")
+//        }
+//        button3.setOnClickListener {
+//            bluetoothManager.sendMessage("FR")
+//        }
+//        button4.setOnClickListener {
+//            bluetoothManager.sendMessage("BL")
+//        }
+//        button5.setOnClickListener {
+//            bluetoothManager.sendMessage("BR")
+//        }
+//        button11.setOnClickListener {
+//            bluetoothManager.sendMessage("EM")
+//        }
+//        button6.setOnClickListener {
+//            bluetoothManager.sendMessage("RL")
+//        }
+//        button12.setOnClickListener {
+//            bluetoothManager.sendMessage("RR")
+//        }
+//
+//        return view
+        // --- Define your release message ---
+        // This is the message sent when ANY of the movement buttons are released.
+        // Adjust this if different buttons need different release messages or no message.
+        val stopMessage = "ST" // Example: "ST" for STOP
+
+        // Apply the OnTouchListener to your buttons
+        button7.setOnTouchListener(createBluetoothTouchListener("FS", stopMessage)) // Đi Thẳng
+        button8.setOnTouchListener(createBluetoothTouchListener("RS", stopMessage)) // Rẽ Phải
+        button9.setOnTouchListener(createBluetoothTouchListener("LS", stopMessage)) // Rẽ Trái
+        button10.setOnTouchListener(createBluetoothTouchListener("BS", stopMessage)) // Đi Lùi
+        button2.setOnTouchListener(createBluetoothTouchListener("FL", stopMessage)) // Đi Thẳng Chéo Trái
+        button3.setOnTouchListener(createBluetoothTouchListener("FR", stopMessage)) // Đi Thẳng Chéo Phải
+        button4.setOnTouchListener(createBluetoothTouchListener("BL", stopMessage)) // Đi Lùi Chéo Trái
+        button5.setOnTouchListener(createBluetoothTouchListener("BR", stopMessage)) // Đi Lùi Chéo Phải
+        button6.setOnTouchListener(createBluetoothTouchListener("RL", stopMessage)) // Quay Vòng Trái
+        button12.setOnTouchListener(createBluetoothTouchListener("RR", stopMessage)) // Quay Vòng Phải
+
         button11.setOnClickListener {
             bluetoothManager.sendMessage("EM")
-        }
-        button6.setOnClickListener {
-            bluetoothManager.sendMessage("RL")
-        }
-        button12.setOnClickListener {
-            bluetoothManager.sendMessage("RR")
-        }
+       }
 
         return view
     }

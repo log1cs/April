@@ -25,17 +25,6 @@
         app:layout_constraintTop_toBottomOf="@+id/button5"
         app:layout_constraintVertical_bias="0.027" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="202dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cybertruck_preview"
-        tools:src="@tools:sample/backgrounds/scenic" />
-
     <!-- "Đi Thẳng" button below the image, centered horizontally -->
 
     <!-- "Thẳng Chéo trái " button below and to the left of "Đi Thẳng" -->
@@ -53,6 +42,19 @@
     <!-- Note: Based on your description, this might be "Lùi Chéo Phải" or you might want to adjust positions -->
 
     <!-- "Đi Lùi" button below the two Lùi Chéo buttons, centered -->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="202dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cyber_side_view"
+        tools:src="@tools:sample/backgrounds/scenic"
+        tools:srcCompat="@drawable/cyber_side_view" />
 
     <Button
         android:id="@+id/button7"
